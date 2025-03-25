@@ -104,7 +104,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ projects }) => {
 									rel="noopener noreferrer"
 									className="group relative inline-flex items-center gap-2 px-6 py-2 rounded-lg border-2 border-blue-600 text-blue-600 overflow-hidden"
 								>
-									<span className="relative z-10 group-hover:text-white transition-colors duration-300">View Source Code</span>
+									<span className="relative z-10 group-hover:text-white transition-colors duration-300">Source Code</span>
 									<div className="absolute inset-0 bg-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
 									<ExternalLink className="w-5 h-5 relative z-10 group-hover:text-white transition-colors duration-300" />
 								</a>

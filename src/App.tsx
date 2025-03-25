@@ -1,26 +1,53 @@
 import React from 'react';
-import { Github, Mail, Linkedin, Code2, BookOpen, Terminal, Notebook as Robot, Brain, Cpu, ExternalLink } from 'lucide-react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Github, Mail, Linkedin, Code2, BookOpen, Terminal, Bot, Brain, Cpu, ExternalLink } from 'lucide-react';
+import ProjectDetails from './components/ProjectDetails';
 
 function App() {
 	const projects = [
 		{
-			title: "Physics Simulator",
-			description: "A high-performance, cross-platform physics simulator with 2D and 3D capabilities, built using OpenGL. Features spatial partitioning, efficient collision detection, and a robust telemetry system for performance analysis.",
-			tech: ["OpenGL", "C++", "EnTT", "ECS"],
-			link: "https://github.com/rakshitx1/ember",
-			image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80"
+			id: "ember",
+			title: "Ember",
+			description: "A versatile game engine with 2D and 3D capabilities, featuring an optimized OpenGL pipeline, robust telemetry system, and Entity Component System (ECS) architecture.",
+			tech: ["C++", "OpenGL", "CMake", "ECS"],
+			link: "https://github.com/embercraft/Ember",
+			image: "/images/ember.png",
+			detailImage: "/images/ember_banner.png",
+			fullDescription: `
+      Ember is a versatile game engine I'm actively developing, designed for both 2D and 3D game development. Key features include:
+
+      • Efficient 2D rendering with an OpenGL-based pipeline
+      • Robust telemetry system for performance monitoring and optimization
+      • Batch rendering and texture atlas support for improved performance
+      • Intuitive user interface (UI) for seamless development
+      • Flexible Entity Component System (ECS) using the EnTT library
+      
+      Future plans include 3D rendering, a node-based visual scripting system, and Vulkan API support. This project showcases my expertise in graphics programming, optimization techniques, and software architecture design.
+    `
 		},
 		{
+			id: "isro-robotics",
 			title: "ISRO Robotics Challenge",
 			description: "Led development of key Rover components, implementing ROS, Gazebo, and Machine Learning algorithms including Visual SLAM. Achieved All India Rank 19 among participating teams.",
 			tech: ["ROS", "Gazebo", "Docker", "Kubernetes", "SLAM"],
-			link: "#",
-			image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80"
+			link: "",
+			image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80",
+			fullDescription: `
+        The ISRO Robotics Challenge project represents a significant achievement in robotics and autonomous systems. Key accomplishments include:
+
+        • Led a team of three software engineers in developing critical Rover components
+        • Implemented advanced navigation using Visual SLAM
+        • Utilized Docker and Kubernetes for efficient development
+        • Achieved All India Rank 19 in the competition
+        • Successfully integrated ROS and Gazebo for simulation and testing
+        
+        This project demonstrates leadership, technical expertise, and practical application of robotics concepts.
+      `
 		}
 	];
 
-	return (
-		<div className="min-h-screen bg-gray-50">
+	const MainContent = () => (
+		<>
 			{/* Hero Section */}
 			<div
 				className="relative h-screen flex items-center justify-center bg-cover bg-center"
@@ -30,7 +57,7 @@ function App() {
 			>
 				<div className="text-center text-white z-10">
 					<h1 className="text-7xl font-bold mb-4">Rakshit Singhal</h1>
-					<p className="text-2xl mb-8">Software Engineer | Robotics Enthusiast | Gamer</p>
+					<p className="text-2xl mb-8">Software Engineer | Robotics Enthusiast | Electrical Engineer</p>
 					<div className="flex justify-center space-x-6">
 						<a href="https://github.com/rakshitx1" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">
 							<Github className="w-10 h-10" />
@@ -46,7 +73,7 @@ function App() {
 			</div>
 
 			{/* About Section */}
-			<section className="py-20 px-4 max-w-6xl mx-auto">
+			<section id="about-me" className="py-20 px-4 max-w-6xl mx-auto">
 				<h2 className="text-3xl font-bold text-center mb-12">About Me</h2>
 				<div className="grid md:grid-cols-2 gap-12 items-center">
 					<div>
@@ -76,10 +103,10 @@ function App() {
 			</section>
 
 			{/* Skills Section */}
-			<section className="py-20 px-4 bg-gray-100">
+			<section id="skills" className="py-20 px-4 bg-gray-100">
 				<div className="max-w-6xl mx-auto">
 					<h2 className="text-3xl font-bold text-center mb-12">Technical Skills</h2>
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+					<div className="grid grid-cols-1 md:grid-cols-4 gap-8">
 						<div className="bg-white p-6 rounded-lg shadow-lg">
 							<Code2 className="w-12 h-12 text-blue-600 mb-4" />
 							<h3 className="text-xl font-semibold mb-4">Programming Languages</h3>
@@ -92,7 +119,7 @@ function App() {
 							</ul>
 						</div>
 						<div className="bg-white p-6 rounded-lg shadow-lg">
-							<Robot className="w-12 h-12 text-blue-600 mb-4" />
+							<Bot className="w-12 h-12 text-blue-600 mb-4" />
 							<h3 className="text-xl font-semibold mb-4">Robotics & Simulation</h3>
 							<ul className="space-y-2 text-gray-700">
 								<li>ROS</li>
@@ -100,10 +127,22 @@ function App() {
 								<li>PyBullet</li>
 								<li>MuJoCo</li>
 								<li>OpenGL</li>
+								<li>NVIDIA Issac</li>
 							</ul>
 						</div>
 						<div className="bg-white p-6 rounded-lg shadow-lg">
 							<Brain className="w-12 h-12 text-blue-600 mb-4" />
+							<h3 className="text-xl font-semibold mb-4">AI & Tools</h3>
+							<ul className="space-y-2 text-gray-700">
+								<li>TensorFlow</li>
+								<li>PyTorch</li>
+								<li>Docker & Kubernetes</li>
+								<li>AWS</li>
+								<li>CI/CD</li>
+							</ul>
+						</div>
+						<div className="bg-white p-6 rounded-lg shadow-lg">
+							<Cpu className="w-12 h-12 text-blue-600 mb-4" />
 							<h3 className="text-xl font-semibold mb-4">AI & Tools</h3>
 							<ul className="space-y-2 text-gray-700">
 								<li>TensorFlow</li>
@@ -118,7 +157,7 @@ function App() {
 			</section>
 
 			{/* Projects Section */}
-			<section className="py-20 px-4">
+			<section id="projects" className="py-20 px-4">
 				<div className="max-w-6xl mx-auto">
 					<h2 className="text-3xl font-bold text-center mb-12">Featured Projects</h2>
 					<div className="space-y-16">
@@ -137,21 +176,37 @@ function App() {
 											</span>
 										))}
 									</div>
-									<a
-										href={project.link}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="inline-block text-blue-600 hover:text-blue-800 transition-colors mt-4"
-									>
-										View Project →
-									</a>
+									<div className="flex gap-4 mt-6">
+										<Link
+											to={`/projects/${project.id}`}
+											className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+										>
+											Read More
+										</Link>
+										{project.link && (
+											<a
+												href={project.link}
+												target="_blank"
+												rel="noopener noreferrer"
+												className="group relative inline-flex items-center gap-2 px-6 py-2 rounded-lg border-2 border-blue-600 text-blue-600 overflow-hidden"
+											>
+												<span className="relative z-10 group-hover:text-white transition-colors duration-300">Source Code</span>
+												<ExternalLink className="w-5 h-5 relative z-10 group-hover:text-white transition-colors duration-300" />
+												<div className="absolute inset-0 bg-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+											</a>
+										)}
+									</div>
 								</div>
 								<div>
-									<img
-										src={project.image}
-										alt={project.title}
-										className="rounded-lg shadow-xl w-full h-64 object-cover"
-									/>
+									<div>
+										<Link to={`/projects/${project.id}`}>
+											<img
+												src={project.image}
+												alt={project.title}
+												className="w-full object-contain cursor-pointer"
+											/>
+										</Link>
+									</div>
 								</div>
 							</div>
 						))}
@@ -168,7 +223,7 @@ function App() {
 						{/* Left Side - Quick Contact Links */}
 						<div className="md:w-1/2 text-center md:text-left">
 							<p className="text-lg text-gray-700 mb-8">
-								I'm always open to discussing new projects, opportunities in robotics, or potential collaborations. Feel free to reach out!
+								I'm always open to discussing new projects, opportunities or potential collaborations. Feel free to reach out!
 							</p>
 							<div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
 								<a
@@ -234,7 +289,16 @@ function App() {
 					<p>© {new Date().getFullYear()} Rakshit Singhal. All rights reserved.</p>
 				</div>
 			</footer>
-		</div>
+		</>
+	);
+
+	return (
+		<Router>
+			<Routes>
+				<Route path="/" element={<MainContent />} />
+				<Route path="/projects/:projectId" element={<ProjectDetails projects={projects} />} />
+			</Routes>
+		</Router>
 	);
 }
 

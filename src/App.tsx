@@ -111,9 +111,8 @@ function App() {
 								<li>C / C++</li>
 								<li>Python</li>
 								<li>Rust</li>
-								<li>Go</li>
 								<li>Shell Scripting</li>
-								{/* <li>Verilog</li> */}
+								<li>Verilog</li>
 							</ul>
 						</div>
 

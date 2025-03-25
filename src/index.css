@@ -1,3 +1,52 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Floating Auto-Hiding Scrollbar */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+	/* For horizontal scrollbar */
+	background: transparent;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+	margin: 4px;
+	/* Ensures scrollbar doesn't take full height */
+}
+
+::-webkit-scrollbar-thumb {
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	border: 2px solid transparent;
+	background-clip: padding-box;
+	transition: background 0.3s ease, opacity 0.3s ease;
+	opacity: 0;
+	/* Hidden by default */
+}
+
+/* Show scrollbar only while scrolling */
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active {
+	opacity: 1;
+}
+
+/* Auto-hide when not scrolling */
+::-webkit-scrollbar-thumb:window-inactive {
+	opacity: 0;
+}
+
+/* Firefox Scrollbar */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+}
+
+/* Force Hiding Until Scroll */
+body {
+	overflow-y: scroll;
+	/* Ensures scrolling is enabled */
+	scrollbar-gutter: stable both-edges;
+	/* Prevents layout shift */
+}

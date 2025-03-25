@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 
@@ -9,7 +9,7 @@ interface Project {
 	tech: string[];
 	link: string;
 	image: string;
-	detailImage?: string; // Added optional detailImage property
+	detailImage?: string;
 	fullDescription: string;
 }
 
@@ -20,6 +20,14 @@ interface ProjectDetailsProps {
 const ProjectDetails: React.FC<ProjectDetailsProps> = ({ projects }) => {
 	const { projectId } = useParams();
 	const project = projects.find(p => p.id === projectId);
+
+	useEffect(() => {
+		// Scroll to a position that shows the project image nicely in view
+		window.scrollTo({
+			top: window.innerHeight * 0, // 10% from the top of viewport
+			behavior: 'smooth'
+		});
+	}, []);
 
 	const handleBackClick = () => {
 		// Navigate to home and scroll to projects section after a small delay
@@ -63,6 +71,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ projects }) => {
 					{/* <img
 						src={project.image}
 						alt={project.title}
+						className="w-full h-64 object-cover"
 					/> */}
 
 					<div className="p-8">

@@ -284,7 +284,7 @@ function App() {
 			</section>
 
 			{/* Footer */}
-			<footer className="bg-gray-900 text-white py-8">
+			<footer className="bg-gray-900 text-white py-4">
 				<div className="max-w-6xl mx-auto px-4 text-center">
 					<p>© {new Date().getFullYear()} Rakshit Singhal. All rights reserved.</p>
 				</div>
